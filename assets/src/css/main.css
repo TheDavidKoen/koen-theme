@@ -1,35 +1,7 @@
-/* Design tokens — expanded in the design-system phase. */
-:root {
-	--color-bg: #fff;
-	--color-text: #1a1a1a;
-	--font-body: system-ui, sans-serif;
-}
-
-/* Minimal reset */
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
-
-body {
-	margin: 0;
-	font-family: var(--font-body);
-	color: var(--color-text);
-	background: var(--color-bg);
-}
-
-img {
-	max-width: 100%;
-	height: auto;
-}
-
-.skip-link {
-	position: absolute;
-	left: -9999px;
-}
-
-.skip-link:focus {
-	left: 1rem;
-	top: 1rem;
-}
+@import '@fontsource-variable/open-sans';
+@import '@fontsource-variable/nunito';
+@import './tokens.css';
+@import './reset.css';
+@import './base.css';
+@import './layout.css';
+@import './components.css';
