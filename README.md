@@ -26,3 +26,15 @@ composer lint   # PHPCS (WordPress Coding Standards)
 The theme auto-detects the Vite dev server: while `npm run dev` runs, assets are
 served from it (see `inc/assets.php`); otherwise the built manifest is used.
 Always run `npm run build` before deploying.
+
+## Git workflow
+
+`main` is protected — every change lands via a pull request with green CI,
+squash-merged so history stays one clean commit per change.
+
+1. Branch off the latest `main`, named after the change type:
+   `git checkout -b feat/my-change` (`feat/`, `fix/`, `chore/`, `docs/`)
+2. Commit using [Conventional Commits](https://www.conventionalcommits.org/)
+3. Push and open a PR: `git push -u origin feat/my-change`, then `gh pr create --fill`
+4. Wait for CI — PHPCS, ESLint/Stylelint, and the Vite build must all pass
+5. Squash-merge: `gh pr merge --squash` (the remote branch is deleted automatically)
