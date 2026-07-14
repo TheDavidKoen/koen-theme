@@ -1,6 +1,8 @@
 <?php
 /**
- * Front page — intro loader + spectral ghost hero.
+ * Front page — intro loader, spectral ghost hero, about section.
+ *
+ * The about body is this page's own content: edit it under Pages → Home.
  *
  * @package Koen
  */
@@ -22,9 +24,19 @@ get_header();
 	</div>
 </section>
 
-<section class="section container flow">
-	<h2><?php esc_html_e( 'More coming soon', 'koen' ); ?></h2>
-	<p><?php esc_html_e( 'Services, experience, and projects land here next.', 'koen' ); ?></p>
+<section class="about section" id="about">
+	<div class="droppy" data-droppy>
+		<h2 class="droppy__text"><?php esc_html_e( 'A little about me', 'koen' ); ?></h2>
+	</div>
+
+	<div class="about__content container flow">
+		<?php
+		while ( have_posts() ) {
+			the_post();
+			the_content();
+		}
+		?>
+	</div>
 </section>
 
 <?php

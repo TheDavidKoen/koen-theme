@@ -1,0 +1,82 @@
+/* ---------------------------------------------------------------------------
+   About section — droppy ink heading + CMS-driven body.
+   Without JS the heading is simply a static espresso h2; the ink layer,
+   cream text, and letter animation only exist once .droppy--ready is set.
+--------------------------------------------------------------------------- */
+
+.about__content {
+	max-width: 46rem;
+}
+
+.droppy {
+	position: relative;
+	display: grid;
+	place-items: center;
+	overflow: hidden;
+	padding-block: var(--space-xl);
+	margin-block-end: var(--space-l);
+}
+
+.droppy__text {
+	display: flex;
+	white-space: pre;
+	font-size: clamp(1.75rem, 7vmin, 3.5rem);
+	color: var(--color-heading);
+	transform: rotate(var(--r, 0deg));
+}
+
+.droppy--ready > .droppy__text {
+	position: relative;
+	z-index: 1;
+	color: var(--cream);
+}
+
+.droppy__letter {
+	display: block;
+	padding: 0.1em 0.2em;
+	margin: -0.1em -0.2em;
+	transform: translateY(100vh);
+	will-change: transform;
+	animation: droppy-drop 0.8s var(--delay, 0ms) ease-out forwards paused;
+}
+
+.droppy--animated .droppy__letter {
+	animation-play-state: running;
+}
+
+.droppy__drops {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	display: grid;
+	place-items: center;
+	pointer-events: none;
+	user-select: none;
+	filter: url('#drops-filter');
+}
+
+.droppy__drops .droppy__letter {
+	border-radius: 50%;
+	color: var(--espresso);
+	background-color: currentcolor;
+}
+
+.droppy__filter {
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+
+@keyframes droppy-drop {
+	0% {
+		transform: translate(0, 100vh);
+	}
+
+	85% {
+		transform: translate(0, -0.15em);
+	}
+
+	100% {
+		transform: translate(0, 0);
+	}
+}
