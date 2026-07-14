@@ -14,9 +14,18 @@ async function initFrontPage() {
 	hero.classList.add('is-revealed');
 }
 
+async function initAbout() {
+	const droppy = document.querySelector('[data-droppy]');
+	if (!droppy) return;
+
+	const { initDroppy } = await import('./droppy.js');
+	initDroppy(droppy);
+}
+
 function init() {
 	document.documentElement.classList.add('js');
 	initFrontPage();
+	initAbout();
 }
 
 if (document.readyState === 'loading') {
