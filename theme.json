@@ -5,10 +5,28 @@
 		"appearanceTools": false,
 		"color": {
 			"defaultPalettes": false,
-			"defaultGradients": false
+			"defaultGradients": false,
+			"palette": [
+				{ "slug": "cream", "name": "Cream", "color": "#FFF8F0" },
+				{ "slug": "camel", "name": "Camel", "color": "#C08552" },
+				{ "slug": "brown", "name": "Brown", "color": "#8C5A3C" },
+				{ "slug": "espresso", "name": "Espresso", "color": "#4B2E2B" }
+			]
 		},
 		"typography": {
-			"defaultFontSizes": false
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{
+					"slug": "body",
+					"name": "Open Sans",
+					"fontFamily": "'Open Sans Variable', system-ui, sans-serif"
+				},
+				{
+					"slug": "heading",
+					"name": "Nunito",
+					"fontFamily": "'Nunito Variable', 'Open Sans Variable', sans-serif"
+				}
+			]
 		}
 	}
 }

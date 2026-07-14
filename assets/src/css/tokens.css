@@ -1,0 +1,62 @@
+/* ---------------------------------------------------------------------------
+   Design tokens. Raw palette values stay here; everything else in the
+   codebase consumes the semantic tokens, never the raw hex values.
+   Camel fails WCAG AA on cream at body sizes — display/decorative use only.
+--------------------------------------------------------------------------- */
+:root {
+	/* Palette */
+	--cream: #fff8f0;
+	--camel: #c08552;
+	--brown: #8c5a3c;
+	--espresso: #4b2e2b;
+
+	/* Semantic colors */
+	--color-bg: var(--cream);
+	--color-text: var(--espresso);
+	--color-text-muted: var(--brown);
+	--color-heading: var(--espresso);
+	--color-accent: var(--camel);
+	--color-border: color-mix(in srgb, var(--camel) 40%, var(--cream));
+	--color-surface-dark: var(--espresso);
+	--color-on-dark: var(--cream);
+	--color-focus: var(--brown);
+
+	/* Typography */
+	--font-body: 'Open Sans Variable', system-ui, sans-serif;
+	--font-heading: 'Nunito Variable', var(--font-body);
+
+	/* Fluid type scale — 320px → 1240px viewport */
+	--step--1: clamp(0.83rem, 0.81rem + 0.12vw, 0.9rem);
+	--step-0: clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
+	--step-1: clamp(1.2rem, 1.13rem + 0.36vw, 1.41rem);
+	--step-2: clamp(1.44rem, 1.33rem + 0.55vw, 1.76rem);
+	--step-3: clamp(1.73rem, 1.56rem + 0.82vw, 2.2rem);
+	--step-4: clamp(2.07rem, 1.84rem + 1.17vw, 2.75rem);
+	--step-5: clamp(2.49rem, 2.16rem + 1.64vw, 3.43rem);
+	--step-display: clamp(3rem, 2.2rem + 4vw, 5.5rem);
+
+	/* Spacing scale */
+	--space-2xs: 0.5rem;
+	--space-xs: 0.75rem;
+	--space-s: 1rem;
+	--space-m: 1.5rem;
+	--space-l: clamp(2rem, 4vw, 3rem);
+	--space-xl: clamp(3rem, 6vw, 5rem);
+	--space-2xl: clamp(4.5rem, 9vw, 8rem);
+
+	/* Shape */
+	--radius-s: 6px;
+	--radius-m: 12px;
+	--radius-l: 24px;
+	--radius-pill: 999px;
+
+	/* Motion */
+	--ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+	--dur-fast: 150ms;
+	--dur-med: 300ms;
+	--dur-slow: 600ms;
+
+	/* Layout */
+	--content-width: 72rem;
+	--gutter: clamp(1rem, 4vw, 2rem);
+}
