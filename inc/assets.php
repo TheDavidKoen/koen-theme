@@ -19,8 +19,11 @@ function koen_enqueue_assets(): void {
 	if ( file_exists( $hot_file ) ) {
 		$origin = trim( (string) file_get_contents( $hot_file ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 
-		wp_enqueue_script( 'koen-vite-client', $origin . '/@vite/client', array(), KOEN_VERSION, false );
-		wp_enqueue_script( 'koen-main', $origin . '/assets/src/js/main.js', array(), KOEN_VERSION, false );
+		// Dev-server URLs must have no ?ver= query — Vite serves them verbatim.
+		// phpcs:disable WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		wp_enqueue_script( 'koen-vite-client', $origin . '/@vite/client', array(), null, false );
+		wp_enqueue_script( 'koen-main', $origin . '/assets/src/js/main.js', array(), null, false );
+		// phpcs:enable WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		return;
 	}
 

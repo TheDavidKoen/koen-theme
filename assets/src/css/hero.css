@@ -1,0 +1,123 @@
+/* ---------------------------------------------------------------------------
+   Intro loader + spectral ghost hero.
+   Both are JS-driven: without the .js class on <html> the intro never
+   shows and the hero content is simply visible (progressive enhancement).
+--------------------------------------------------------------------------- */
+
+.intro {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	background: var(--espresso);
+	color: var(--cream);
+	transform-origin: top;
+}
+
+.js .intro {
+	display: flex;
+}
+
+.intro__label {
+	font-family: var(--font-heading);
+	font-size: var(--step-3);
+	font-variation-settings: 'wght' 400;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.intro__wipe {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 30%;
+	overflow: hidden;
+	background: var(--camel);
+	color: transparent;
+	-webkit-text-stroke: 2px var(--espresso);
+	font-family: var(--font-heading);
+	font-size: 18vw;
+	font-weight: 1000;
+	line-height: 1;
+	text-transform: uppercase;
+	white-space: nowrap;
+	transform: scaleY(0);
+	transform-origin: bottom;
+}
+
+.intro__wipe span {
+	transform: scaleX(0.8) scaleY(1.4);
+	letter-spacing: -0.5vw;
+}
+
+.hero {
+	position: relative;
+	display: grid;
+	place-items: center;
+	min-height: 100svh;
+	overflow: hidden;
+	background: radial-gradient(ellipse at 50% 40%, #5a3a33 0%, var(--espresso) 55%, #2c1b18 100%);
+	color: var(--cream);
+}
+
+.hero canvas {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	opacity: 0;
+	transition: opacity 2s var(--ease-out);
+}
+
+.hero.is-revealed canvas {
+	opacity: 1;
+}
+
+.hero__content {
+	position: relative;
+	z-index: 2;
+	text-align: center;
+	pointer-events: none;
+}
+
+.js .hero__content {
+	opacity: 0;
+	transition: opacity 1.5s var(--ease-out);
+}
+
+.js .hero.is-revealed .hero__content {
+	opacity: 1;
+}
+
+.hero__title {
+	color: var(--cream);
+	font-size: var(--step-display);
+	text-transform: uppercase;
+	letter-spacing: -0.02em;
+}
+
+.hero__tagline {
+	margin-inline: auto;
+	color: var(--camel);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.25em;
+	font-size: var(--step--1);
+}
+
+/* Front page: header floats over the dark hero */
+.home .site-header {
+	position: absolute;
+	z-index: 10;
+	inset-inline: 0;
+	top: 0;
+}
+
+.home .site-header a {
+	color: var(--cream);
+}
