@@ -22,10 +22,19 @@ async function initAbout() {
 	initDroppy(droppy);
 }
 
+async function initCoffeeBuddy() {
+	const buddy = document.querySelector('[data-coffee-buddy]');
+	if (!buddy) return;
+
+	const module = await import('./coffee-buddy.js');
+	module.initCoffeeBuddy(buddy);
+}
+
 function init() {
 	document.documentElement.classList.add('js');
 	initFrontPage();
 	initAbout();
+	initCoffeeBuddy();
 }
 
 if (document.readyState === 'loading') {
