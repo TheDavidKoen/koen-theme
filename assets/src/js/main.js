@@ -46,6 +46,14 @@ async function initSkills() {
 	initSkillCards(Array.from(cards));
 }
 
+async function initProjects() {
+	const items = document.querySelectorAll('[data-project-item]');
+	if (!items.length) return;
+
+	const { initProjects: start } = await import('./projects.js');
+	start(Array.from(items));
+}
+
 function init() {
 	document.documentElement.classList.add('js');
 	initFrontPage();
@@ -53,6 +61,7 @@ function init() {
 	initCoffeeBuddy();
 	initFootsteps();
 	initSkills();
+	initProjects();
 }
 
 if (document.readyState === 'loading') {

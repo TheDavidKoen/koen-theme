@@ -173,13 +173,11 @@ export function initFootsteps(hero) {
 			);
 			stepFoot = 1 - stepFoot;
 		} else {
-			const moved = restingAt
-				? Math.hypot(target.x - restingAt.x, target.y - restingAt.y) > 12
-				: true;
 			const crowded = dist < WAIT_GAP * 0.75;
 
-			if (moved || crowded) {
-				// Arrived: both feet settle side by side, keeping their distance.
+			if (!restingAt || crowded) {
+				// Arrived: plant both feet side by side and stay put until the
+				// cursor leaves ARRIVE_RADIUS (walking resumes) or crowds them.
 				restingAt = { x: target.x, y: target.y };
 				feet.forEach((foot, i) => {
 					const side = i === 0 ? -1 : 1;
