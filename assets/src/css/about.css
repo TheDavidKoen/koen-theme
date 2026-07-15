@@ -52,7 +52,6 @@
 	place-items: center;
 	pointer-events: none;
 	user-select: none;
-	filter: url('#drops-filter');
 }
 
 .droppy__drops .droppy__letter {

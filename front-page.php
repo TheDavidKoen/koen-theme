@@ -41,5 +41,7 @@ get_header();
 	<?php get_template_part( 'template-parts/coffee-buddy' ); ?>
 </section>
 
+<?php get_template_part( 'template-parts/skills' ); ?>
+
 <?php
 get_footer();

@@ -6,6 +6,7 @@
 :root {
 	/* Palette */
 	--cream: #fff8f0;
+	--latte: #f3e5d3;
 	--camel: #c08552;
 	--brown: #8c5a3c;
 	--espresso: #4b2e2b;
@@ -17,6 +18,7 @@
 	--color-heading: var(--espresso);
 	--color-accent: var(--camel);
 	--color-border: color-mix(in srgb, var(--camel) 40%, var(--cream));
+	--color-surface-tint: var(--latte);
 	--color-surface-dark: var(--espresso);
 	--color-on-dark: var(--cream);
 	--color-focus: var(--brown);

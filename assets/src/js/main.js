@@ -15,11 +15,11 @@ async function initFrontPage() {
 }
 
 async function initAbout() {
-	const droppy = document.querySelector('[data-droppy]');
-	if (!droppy) return;
+	const droppies = document.querySelectorAll('[data-droppy]');
+	if (!droppies.length) return;
 
 	const { initDroppy } = await import('./droppy.js');
-	initDroppy(droppy);
+	droppies.forEach((droppy) => initDroppy(droppy));
 }
 
 async function initCoffeeBuddy() {
@@ -38,12 +38,21 @@ async function initFootsteps() {
 	start(hero);
 }
 
+async function initSkills() {
+	const cards = document.querySelectorAll('[data-skill-card]');
+	if (!cards.length) return;
+
+	const { initSkillCards } = await import('./canvas-cards.js');
+	initSkillCards(Array.from(cards));
+}
+
 function init() {
 	document.documentElement.classList.add('js');
 	initFrontPage();
 	initAbout();
 	initCoffeeBuddy();
 	initFootsteps();
+	initSkills();
 }
 
 if (document.readyState === 'loading') {
