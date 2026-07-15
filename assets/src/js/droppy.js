@@ -3,10 +3,12 @@
  * Letters rain into place while gooey ink pools behind them.
  * Vanilla-CSS port: the randomized drop shapes are generated per letter
  * here instead of via Sass, and the animation starts on scroll into view.
- * Only one instance per page (the SVG filter uses a fixed id).
+ * Each instance gets its own SVG filter id, so multiple headings coexist.
  */
 
 const DELAY_BETWEEN_DROPS = 95;
+
+let instanceCount = 0;
 
 function randomBetween(min, max) {
 	return min + Math.random() * (max - min);
@@ -15,6 +17,8 @@ function randomBetween(min, max) {
 export function initDroppy(root) {
 	const text = root.querySelector('.droppy__text');
 	if (!text) return;
+
+	const filterId = `drops-filter-${++instanceCount}`;
 
 	// Keep the heading readable for assistive tech before splitting it up.
 	const original = text.textContent;
@@ -34,13 +38,14 @@ export function initDroppy(root) {
 
 	root.insertAdjacentHTML(
 		'beforeend',
-		'<svg class="droppy__filter" aria-hidden="true"><filter id="drops-filter" x="-50%" width="200%" y="-50%" height="200%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/></filter></svg>'
+		`<svg class="droppy__filter" aria-hidden="true"><filter id="${filterId}" x="-50%" width="200%" y="-50%" height="200%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/></filter></svg>`
 	);
 
 	// The ink layer: a non-heading clone of the letters, goo-filtered.
 	const drops = document.createElement('div');
 	drops.className = 'droppy__drops';
 	drops.setAttribute('aria-hidden', 'true');
+	drops.style.filter = `url(#${filterId})`;
 
 	const cloneText = document.createElement('div');
 	cloneText.className = 'droppy__text';
@@ -54,13 +59,27 @@ export function initDroppy(root) {
 	root.appendChild(drops);
 	root.classList.add('droppy--ready');
 
+	// Play when scrolled into view; reset when fully out of view so the
+	// effect replays on every return.
 	new IntersectionObserver(
-		(entries, observer) => {
-			if (entries[0].isIntersecting) {
-				root.classList.add('droppy--animated');
-				observer.disconnect();
-			}
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+					root.classList.add('droppy--animated');
+				} else if (!entry.isIntersecting) {
+					root.classList.remove('droppy--animated');
+					// Restart the CSS animations from frame zero.
+					const letters = root.querySelectorAll('.droppy__letter');
+					letters.forEach((letter) => {
+						letter.style.animation = 'none';
+					});
+					void root.offsetWidth; // force reflow so the reset sticks
+					letters.forEach((letter) => {
+						letter.style.animation = '';
+					});
+				}
+			});
 		},
-		{ threshold: 0.4 }
+		{ threshold: [0, 0.4] }
 	).observe(root);
 }

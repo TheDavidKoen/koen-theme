@@ -10,7 +10,8 @@
 				{ "slug": "cream", "name": "Cream", "color": "#FFF8F0" },
 				{ "slug": "camel", "name": "Camel", "color": "#C08552" },
 				{ "slug": "brown", "name": "Brown", "color": "#8C5A3C" },
-				{ "slug": "espresso", "name": "Espresso", "color": "#4B2E2B" }
+				{ "slug": "espresso", "name": "Espresso", "color": "#4B2E2B" },
+				{ "slug": "latte", "name": "Latte", "color": "#F3E5D3" }
 			]
 		},
 		"typography": {

@@ -1,0 +1,89 @@
+/* ---------------------------------------------------------------------------
+   Skills grid — particle-canvas cards. Flex-wrap yields 3 + 2 rows at
+   desktop width; the <img> is the universal fallback, the canvas mounts
+   over it on hover-capable devices only.
+--------------------------------------------------------------------------- */
+
+.skills {
+	background: var(--color-surface-tint);
+}
+
+.skills__grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--space-l) var(--space-m);
+}
+
+.skill-card {
+	flex: 0 1 300px;
+	opacity: 0;
+	transform: translateY(2rem);
+	transition:
+		opacity 0.7s var(--ease-out),
+		transform 0.7s var(--ease-out);
+}
+
+.skill-card:nth-child(2) {
+	transition-delay: 0.1s;
+}
+
+.skill-card:nth-child(3) {
+	transition-delay: 0.2s;
+}
+
+.skill-card:nth-child(4) {
+	transition-delay: 0.3s;
+}
+
+.skill-card:nth-child(5) {
+	transition-delay: 0.4s;
+}
+
+.skill-card.is-revealed {
+	opacity: 1;
+	transform: none;
+}
+
+.skill-card__media {
+	position: relative;
+	overflow: hidden;
+	aspect-ratio: 3 / 4;
+	border-radius: var(--radius-m);
+	background: var(--espresso);
+}
+
+.skill-card__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.skill-card__media--canvas img {
+	visibility: hidden;
+}
+
+.skill-card__media canvas {
+	position: absolute;
+	inset: 0;
+}
+
+.skill-card__title {
+	position: absolute;
+	inset-inline: var(--space-s);
+	bottom: var(--space-s);
+	z-index: 1;
+	color: var(--cream);
+	font-size: var(--step-1);
+	line-height: 1.15;
+	text-align: center;
+	text-shadow: 0 2px 12px rgb(0 0 0 / 45%);
+	pointer-events: none;
+}
+
+.skill-card__body {
+	margin-block-start: var(--space-s);
+	font-size: var(--step--1);
+	color: var(--color-text-muted);
+	text-align: center;
+}

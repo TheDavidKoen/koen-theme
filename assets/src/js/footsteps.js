@@ -104,17 +104,23 @@ export function initFootsteps(hero) {
 		);
 	}
 
+	// The feet treat these like the hero: walk to the crossing point, fade.
+	const noGoZones = [hero, ...document.querySelectorAll('[data-skill-card]')];
+
 	window.addEventListener(
 		'pointermove',
 		(e) => {
-			const rect = hero.getBoundingClientRect();
-			const inHero =
-				e.clientX >= rect.left &&
-				e.clientX <= rect.right &&
-				e.clientY >= rect.top &&
-				e.clientY <= rect.bottom;
+			const inZone = noGoZones.some((zone) => {
+				const rect = zone.getBoundingClientRect();
+				return (
+					e.clientX >= rect.left &&
+					e.clientX <= rect.right &&
+					e.clientY >= rect.top &&
+					e.clientY <= rect.bottom
+				);
+			});
 
-			if (inHero) {
+			if (inZone) {
 				// Freeze the target where the cursor crossed in: the feet
 				// finish the walk to that point, then fade out on arrival.
 				departed = true;
