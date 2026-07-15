@@ -30,11 +30,20 @@ async function initCoffeeBuddy() {
 	module.initCoffeeBuddy(buddy);
 }
 
+async function initFootsteps() {
+	const hero = document.querySelector('[data-hero-ghost]');
+	if (!hero) return;
+
+	const { initFootsteps: start } = await import('./footsteps.js');
+	start(hero);
+}
+
 function init() {
 	document.documentElement.classList.add('js');
 	initFrontPage();
 	initAbout();
 	initCoffeeBuddy();
+	initFootsteps();
 }
 
 if (document.readyState === 'loading') {

@@ -1,0 +1,56 @@
+/* ---------------------------------------------------------------------------
+   Footsteps — a two-footed follower that chases the cursor outside the hero.
+   The container spans the whole document and never blocks interaction.
+--------------------------------------------------------------------------- */
+
+body {
+	position: relative;
+}
+
+.footsteps {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	overflow: hidden;
+	pointer-events: none;
+	color: var(--espresso);
+	transition: opacity 0.3s ease-out;
+}
+
+.footsteps--hidden {
+	opacity: 0;
+}
+
+.footsteps__foot {
+	position: absolute;
+	width: 42px;
+	height: 42px;
+	fill: currentcolor;
+	opacity: 0.6;
+	transition:
+		left 0.08s ease-out,
+		top 0.08s ease-out,
+		transform 0.08s ease-out;
+}
+
+.footsteps__foot.is-teleporting {
+	transition: none;
+}
+
+.footsteps__print {
+	position: absolute;
+	width: 42px;
+	height: 42px;
+	fill: currentcolor;
+	animation: footstep-fade 2s ease-out forwards;
+}
+
+@keyframes footstep-fade {
+	0% {
+		opacity: 0.3;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
