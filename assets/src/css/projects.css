@@ -3,13 +3,32 @@
    Collapsed: thumbnail + title in a row. Expanded: column with details.
 --------------------------------------------------------------------------- */
 
+.projects__layout {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-l);
+}
+
 .projects__list {
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-s);
-	max-width: 42rem;
+	width: 100%;
 	padding: 0;
 	list-style: none;
+}
+
+@media (width >= 64em) {
+	.projects__layout--split {
+		grid-template-columns: 1fr 1fr;
+		align-items: start;
+	}
+
+	/* The intro keeps you company while the list scrolls past. */
+	.projects__layout--split .projects__intro {
+		position: sticky;
+		top: var(--space-l);
+	}
 }
 
 .project-item {

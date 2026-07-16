@@ -17,13 +17,29 @@ $koen_projects = new WP_Query(
 if ( ! $koen_projects->have_posts() ) {
 	return;
 }
+
+// The projects intro lives below the More block in the front page's content.
+$koen_front_page  = get_post( get_queried_object_id() );
+$koen_front_parts = $koen_front_page ? get_extended( $koen_front_page->post_content ) : array( 'extended' => '' );
+$koen_intro       = trim( $koen_front_parts['extended'] );
 ?>
 <section class="projects section" id="projects">
 	<div class="droppy" data-droppy>
 		<h2 class="droppy__text"><?php esc_html_e( 'An idea of my work', 'koen' ); ?></h2>
 	</div>
 
-	<ul class="projects__list container">
+	<div class="projects__layout container<?php echo $koen_intro ? ' projects__layout--split' : ''; ?>">
+		<?php if ( $koen_intro ) : ?>
+			<div class="projects__intro flow">
+				<?php echo wp_kses_post( apply_filters( 'the_content', $koen_intro ) ); ?>
+				<button type="button" class="contact-portal" data-contact-open>
+					<span class="contact-portal__stage" data-portal-stage aria-hidden="true"></span>
+					<span class="contact-portal__label"><?php esc_html_e( 'Get in touch', 'koen' ); ?></span>
+				</button>
+			</div>
+		<?php endif; ?>
+
+		<ul class="projects__list">
 		<?php
 		while ( $koen_projects->have_posts() ) :
 			$koen_projects->the_post();
@@ -63,7 +79,8 @@ if ( ! $koen_projects->have_posts() ) {
 				</div>
 			</li>
 		<?php endwhile; ?>
-	</ul>
+		</ul>
+	</div>
 </section>
 <?php
 wp_reset_postdata();
