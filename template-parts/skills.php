@@ -25,6 +25,11 @@ if ( ! $koen_skills->have_posts() ) {
 		<h2 class="droppy__text"><?php esc_html_e( 'What I do', 'koen' ); ?></h2>
 	</div>
 
+	<p class="skills__quip container">
+		<?php esc_html_e( '“How to solve Windows problems: reboot', 'koen' ); ?><br>
+		<?php esc_html_e( 'How to solve Linux problems: be root”', 'koen' ); ?>
+	</p>
+
 	<div class="skills__grid container">
 		<?php
 		while ( $koen_skills->have_posts() ) :

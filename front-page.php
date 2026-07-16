@@ -33,7 +33,9 @@ get_header();
 		<?php
 		while ( have_posts() ) {
 			the_post();
-			the_content();
+			// Content above the More block only; the rest is the projects intro.
+			$koen_parts = get_extended( get_post()->post_content );
+			echo wp_kses_post( apply_filters( 'the_content', $koen_parts['main'] ) );
 		}
 		?>
 	</div>
@@ -43,6 +45,7 @@ get_header();
 
 <?php get_template_part( 'template-parts/skills' ); ?>
 <?php get_template_part( 'template-parts/projects' ); ?>
+<?php get_template_part( 'template-parts/contact-overlay' ); ?>
 
 <?php
 get_footer();

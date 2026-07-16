@@ -54,6 +54,14 @@ async function initProjects() {
 	start(Array.from(items));
 }
 
+async function initContact() {
+	const overlay = document.querySelector('[data-contact-overlay]');
+	if (!overlay) return;
+
+	const { initContactOverlay } = await import('./contact-overlay.js');
+	initContactOverlay(overlay);
+}
+
 function init() {
 	document.documentElement.classList.add('js');
 	initFrontPage();
@@ -62,6 +70,7 @@ function init() {
 	initFootsteps();
 	initSkills();
 	initProjects();
+	initContact();
 }
 
 if (document.readyState === 'loading') {
