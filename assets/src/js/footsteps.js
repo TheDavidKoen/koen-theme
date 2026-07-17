@@ -105,7 +105,12 @@ export function initFootsteps(hero) {
 	}
 
 	// The feet treat these like the hero: walk to the crossing point, fade.
-	const noGoZones = [hero, ...document.querySelectorAll('[data-skill-card]')];
+	const noGoZones = [
+		hero,
+		...document.querySelectorAll(
+			'[data-skill-card], [data-project-item], [data-contact-open], [data-footer-particles]'
+		),
+	];
 
 	window.addEventListener(
 		'pointermove',

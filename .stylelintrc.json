@@ -9,6 +9,7 @@
 			}
 		],
 		"custom-property-pattern": "^[a-z][a-z0-9]*(-{1,2}[a-z0-9]+)*$",
+		"no-descending-specificity": null,
 		"property-no-vendor-prefix": [true, { "ignoreProperties": ["text-size-adjust", "text-stroke"] }]
 	}
 }
