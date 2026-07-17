@@ -17,7 +17,6 @@
 	--color-text-muted: var(--brown);
 	--color-heading: var(--espresso);
 	--color-accent: var(--camel);
-	--color-border: color-mix(in srgb, var(--camel) 40%, var(--cream));
 	--color-surface-tint: var(--latte);
 	--color-surface-dark: var(--espresso);
 	--color-on-dark: var(--cream);

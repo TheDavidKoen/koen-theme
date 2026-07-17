@@ -151,7 +151,7 @@ export function initSkillCards(cards) {
 				}
 			});
 		},
-		{ threshold: 0.2 }
+		{ threshold: 0.2 },
 	);
 	cards.forEach((card) => reveal.observe(card));
 

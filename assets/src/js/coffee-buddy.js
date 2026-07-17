@@ -29,7 +29,7 @@ export function initCoffeeBuddy(svg) {
 			pointerX = e.clientX;
 			pointerY = e.clientY;
 		},
-		{ passive: true }
+		{ passive: true },
 	);
 
 	new IntersectionObserver((entries) => {
@@ -60,10 +60,7 @@ export function initCoffeeBuddy(svg) {
 
 			eye.x += (Math.cos(angle) * dist - eye.x) * SMOOTHING;
 			eye.y += (Math.sin(angle) * dist - eye.y) * SMOOTHING;
-			eye.pupil.setAttribute(
-				'transform',
-				`translate(${eye.x.toFixed(2)} ${eye.y.toFixed(2)})`
-			);
+			eye.pupil.setAttribute('transform', `translate(${eye.x.toFixed(2)} ${eye.y.toFixed(2)})`);
 		}
 	}
 	requestAnimationFrame(tick);

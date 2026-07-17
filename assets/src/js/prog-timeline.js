@@ -51,14 +51,14 @@ export function initProgTimeline(root) {
 			// one lights up well before the rail fades out at the footer.
 			item.classList.toggle(
 				'prog-timeline__item--in',
-				progress >= (i / (items.length - 1)) * 0.9 - 0.02
+				progress >= (i / (items.length - 1)) * 0.9 - 0.02,
 			);
 		});
 
 		const mid = y + window.innerHeight / 2;
 		root.classList.toggle(
 			'prog-timeline--alt',
-			Boolean(skills) && mid >= skillsTop && mid <= skillsBottom
+			Boolean(skills) && mid >= skillsTop && mid <= skillsBottom,
 		);
 	}
 
@@ -73,7 +73,7 @@ export function initProgTimeline(root) {
 				ticking = false;
 			});
 		},
-		{ passive: true }
+		{ passive: true },
 	);
 
 	window.addEventListener(
@@ -82,7 +82,7 @@ export function initProgTimeline(root) {
 			measure();
 			update();
 		},
-		{ passive: true }
+		{ passive: true },
 	);
 
 	// Monitor moves can change the media match without a resize event.

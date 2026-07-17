@@ -76,7 +76,7 @@ export function initFootsteps(hero) {
 
 		const print = makeFootSvg(
 			feet.indexOf(foot) === 0 ? '#feet-left' : '#feet-right',
-			'footsteps__print'
+			'footsteps__print',
 		);
 		print.style.left = `${foot.x}px`;
 		print.style.top = `${foot.y}px`;
@@ -94,13 +94,13 @@ export function initFootsteps(hero) {
 				foot,
 				x + Math.cos(angle + Math.PI / 2) * STANCE_WIDTH * side,
 				y + Math.sin(angle + Math.PI / 2) * STANCE_WIDTH * side,
-				angle
+				angle,
 			);
 		});
 		requestAnimationFrame(() =>
 			requestAnimationFrame(() =>
-				feet.forEach((foot) => foot.el.classList.remove('is-teleporting'))
-			)
+				feet.forEach((foot) => foot.el.classList.remove('is-teleporting')),
+			),
 		);
 	}
 
@@ -108,7 +108,7 @@ export function initFootsteps(hero) {
 	const noGoZones = [
 		hero,
 		...document.querySelectorAll(
-			'[data-skill-card], [data-project-item], [data-contact-open], [data-footer-particles]'
+			'[data-skill-card], [data-project-item], [data-contact-open], [data-footer-particles]',
 		),
 	];
 
@@ -142,7 +142,7 @@ export function initFootsteps(hero) {
 
 			target = { x: e.pageX, y: e.pageY };
 		},
-		{ passive: true }
+		{ passive: true },
 	);
 
 	setInterval(() => {
@@ -174,7 +174,7 @@ export function initFootsteps(hero) {
 				foot,
 				midX + Math.cos(angle) * reach + Math.cos(angle + Math.PI / 2) * STANCE_WIDTH * side,
 				midY + Math.sin(angle) * reach + Math.sin(angle + Math.PI / 2) * STANCE_WIDTH * side,
-				angle
+				angle,
 			);
 			stepFoot = 1 - stepFoot;
 		} else {
@@ -188,9 +188,13 @@ export function initFootsteps(hero) {
 					const side = i === 0 ? -1 : 1;
 					place(
 						foot,
-						target.x - Math.cos(angle) * WAIT_GAP + Math.cos(angle + Math.PI / 2) * STANCE_WIDTH * side,
-						target.y - Math.sin(angle) * WAIT_GAP + Math.sin(angle + Math.PI / 2) * STANCE_WIDTH * side,
-						angle
+						target.x -
+							Math.cos(angle) * WAIT_GAP +
+							Math.cos(angle + Math.PI / 2) * STANCE_WIDTH * side,
+						target.y -
+							Math.sin(angle) * WAIT_GAP +
+							Math.sin(angle + Math.PI / 2) * STANCE_WIDTH * side,
+						angle,
 					);
 				});
 			}
