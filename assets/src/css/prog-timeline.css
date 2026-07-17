@@ -1,0 +1,131 @@
+/* ---------------------------------------------------------------------------
+   Programming-evolution rail — fixed to the left, drawn by scroll progress
+   (JS sets --progress and the state classes). Wide viewports only.
+--------------------------------------------------------------------------- */
+
+.prog-timeline {
+	--timeline-color: var(--camel);
+
+	position: fixed;
+	inset-block: 6svh;
+	left: var(--space-s);
+	z-index: 1;
+	display: none;
+	width: 9rem;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition:
+		opacity 0.4s var(--ease-out),
+		visibility 0.4s;
+}
+
+/* Laptops: narrower rail, labels wrap to ~2 lines. */
+@media (width >= 80em) {
+	.prog-timeline {
+		display: block;
+	}
+}
+
+/* Wide screens: roomier rail. */
+@media (width >= 100em) {
+	.prog-timeline {
+		left: var(--space-l);
+		width: 13rem;
+	}
+}
+
+.prog-timeline--active {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Passing through the latte "What I do" band */
+.prog-timeline--alt {
+	--timeline-color: var(--espresso);
+}
+
+.prog-timeline::before {
+	content: '';
+	position: absolute;
+	inset-block: 0;
+	left: 0.5rem;
+	width: 2px;
+	background: color-mix(in srgb, var(--timeline-color) 25%, transparent);
+	transition: background-color 0.4s;
+}
+
+.prog-timeline__progress {
+	position: absolute;
+	inset-block: 0;
+	left: 0.5rem;
+	width: 2px;
+	background: var(--timeline-color);
+	transform: scaleY(var(--progress, 0));
+	transform-origin: top;
+	transition: background-color 0.4s;
+}
+
+.prog-timeline__items {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	padding: 0;
+	list-style: none;
+}
+
+.prog-timeline__item {
+	position: relative;
+	padding-left: 1.6rem;
+}
+
+.prog-timeline__item::before {
+	content: '';
+	position: absolute;
+	top: 0.3em;
+	left: 0.5rem;
+	width: 0.7em;
+	height: 0.7em;
+	background: var(--timeline-color);
+	border-radius: 50%;
+	transform: translateX(-50%) scale(0);
+	transition:
+		transform 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+		background-color 0.4s;
+}
+
+.prog-timeline__year,
+.prog-timeline__label {
+	display: block;
+	opacity: 0;
+	transform: translateX(-0.75em);
+	transition:
+		opacity 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+		transform 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+		color 0.4s;
+}
+
+.prog-timeline__year {
+	color: var(--timeline-color);
+	font-family: var(--font-heading);
+	font-size: 0.8rem;
+	font-weight: 800;
+	line-height: 1.2;
+}
+
+.prog-timeline__label {
+	color: var(--color-text-muted);
+	font-size: 0.72rem;
+	line-height: 1.25;
+}
+
+.prog-timeline__item--in::before {
+	transform: translateX(-50%) scale(1);
+}
+
+.prog-timeline__item--in .prog-timeline__year,
+.prog-timeline__item--in .prog-timeline__label {
+	opacity: 1;
+	transform: translateX(0);
+}
