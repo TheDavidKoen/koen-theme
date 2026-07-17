@@ -70,6 +70,14 @@ async function initFooter() {
 	initFooterParticles(footer);
 }
 
+async function initProgTimeline() {
+	const rail = document.querySelector('[data-prog-timeline]');
+	if (!rail) return;
+
+	const { initProgTimeline: start } = await import('./prog-timeline.js');
+	start(rail);
+}
+
 function init() {
 	document.documentElement.classList.add('js');
 	initFrontPage();
@@ -80,6 +88,7 @@ function init() {
 	initProjects();
 	initContact();
 	initFooter();
+	initProgTimeline();
 }
 
 if (document.readyState === 'loading') {
