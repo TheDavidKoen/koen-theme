@@ -62,6 +62,14 @@ async function initContact() {
 	initContactOverlay(overlay);
 }
 
+async function initFooter() {
+	const footer = document.querySelector('[data-footer-particles]');
+	if (!footer) return;
+
+	const { initFooterParticles } = await import('./footer-particles.js');
+	initFooterParticles(footer);
+}
+
 function init() {
 	document.documentElement.classList.add('js');
 	initFrontPage();
@@ -71,6 +79,7 @@ function init() {
 	initSkills();
 	initProjects();
 	initContact();
+	initFooter();
 }
 
 if (document.readyState === 'loading') {
