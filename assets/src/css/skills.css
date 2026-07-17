@@ -29,6 +29,7 @@
 
 .skill-card {
 	flex: 0 1 300px;
+	min-width: 0;
 	opacity: 0;
 	transform: translateY(2rem);
 	transition:
@@ -55,6 +56,25 @@
 .skill-card.is-revealed {
 	opacity: 1;
 	transform: none;
+}
+
+/* Phones: two cards per row instead of one full-width card each. */
+@media (width < 48em) {
+	.skills__grid {
+		gap: var(--space-m) var(--space-s);
+	}
+
+	.skill-card {
+		flex: 0 1 calc(50% - var(--space-s) / 2);
+	}
+
+	.skill-card__title {
+		font-size: var(--step-0);
+	}
+
+	.skill-card__body {
+		font-size: 0.72rem;
+	}
 }
 
 .skill-card__media {

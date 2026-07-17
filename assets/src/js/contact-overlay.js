@@ -171,8 +171,14 @@ export function initContactOverlay(overlay) {
 
 			button.addEventListener('mouseenter', () => mini.setCollapse(true));
 			button.addEventListener('mouseleave', () => mini.setCollapse(false));
-			button.addEventListener('focus', () => mini.setCollapse(true));
+			// :focus-visible keeps the keyboard hover-equivalent but ignores
+			// the programmatic refocus that happens when the overlay closes.
+			button.addEventListener('focus', () => {
+				if (button.matches(':focus-visible')) mini.setCollapse(true);
+			});
 			button.addEventListener('blur', () => mini.setCollapse(false));
+			// Opening the overlay releases the swarm back to orbit.
+			button.addEventListener('click', () => mini.setCollapse(false));
 		});
 	}
 

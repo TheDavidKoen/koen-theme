@@ -32,12 +32,13 @@ $koen_intro       = trim( $koen_front_parts['extended'] );
 		<?php if ( $koen_intro ) : ?>
 			<div class="projects__intro flow">
 				<?php echo wp_kses_post( apply_filters( 'the_content', $koen_intro ) ); ?>
-				<button type="button" class="contact-portal" data-contact-open>
-					<span class="contact-portal__stage" data-portal-stage aria-hidden="true"></span>
-					<span class="contact-portal__label"><?php esc_html_e( 'Get in touch', 'koen' ); ?></span>
-				</button>
 			</div>
 		<?php endif; ?>
+
+		<button type="button" class="contact-portal" data-contact-open>
+			<span class="contact-portal__stage" data-portal-stage aria-hidden="true"></span>
+			<span class="contact-portal__label"><?php esc_html_e( 'Get in touch', 'koen' ); ?></span>
+		</button>
 
 		<ul class="projects__list">
 		<?php

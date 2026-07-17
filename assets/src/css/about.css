@@ -4,9 +4,8 @@
    cream text, and letter animation only exist once .droppy--ready is set.
 --------------------------------------------------------------------------- */
 
-.about__content {
-	max-width: 46rem;
-}
+/* Width is uncapped so editor Columns blocks can split the row 50/50;
+   single paragraphs still cap themselves via the base p max-width. */
 
 .droppy {
 	position: relative;

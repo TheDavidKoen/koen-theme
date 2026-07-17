@@ -59,27 +59,14 @@ export function initDroppy(root) {
 	root.appendChild(drops);
 	root.classList.add('droppy--ready');
 
-	// Play when scrolled into view; reset when fully out of view so the
-	// effect replays on every return.
+	// Play once when scrolled into view; the finished heading then stays.
 	new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
-					root.classList.add('droppy--animated');
-				} else if (!entry.isIntersecting) {
-					root.classList.remove('droppy--animated');
-					// Restart the CSS animations from frame zero.
-					const letters = root.querySelectorAll('.droppy__letter');
-					letters.forEach((letter) => {
-						letter.style.animation = 'none';
-					});
-					void root.offsetWidth; // force reflow so the reset sticks
-					letters.forEach((letter) => {
-						letter.style.animation = '';
-					});
-				}
-			});
+		(entries, observer) => {
+			if (entries[0].isIntersecting) {
+				root.classList.add('droppy--animated');
+				observer.disconnect();
+			}
 		},
-		{ threshold: [0, 0.4] }
+		{ threshold: 0.4 }
 	).observe(root);
 }

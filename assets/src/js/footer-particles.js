@@ -83,6 +83,10 @@ export function initFooterParticles(footer) {
 		h = footer.offsetHeight;
 		canvas.width = Math.ceil(w * scale);
 		canvas.height = Math.ceil(h * scale);
+		// CSS size must be set explicitly: an absolutely-positioned canvas
+		// otherwise renders at its (2x) bitmap size and overflows the page.
+		canvas.style.width = `${w}px`;
+		canvas.style.height = `${h}px`;
 		ctx.setTransform(scale, 0, 0, scale, 0, 0);
 	}
 	resize();

@@ -83,3 +83,10 @@ a:hover {
 	clip-path: inset(50%);
 	white-space: nowrap;
 }
+
+/* Decorative layers (wipe text, canvases, drops) must never widen the
+   page: clip horizontal overflow at the viewport without creating a
+   scroll container. */
+html {
+	overflow-x: clip;
+}

@@ -11,6 +11,7 @@
 	display: none;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
 	background: var(--espresso);
 	color: var(--cream);
 	transform-origin: top;
@@ -66,6 +67,13 @@
 	color: var(--cream);
 }
 
+/* Phones: the hero shouldn't swallow the whole first screen. */
+@media (width < 48em) {
+	.hero {
+		min-height: 72svh;
+	}
+}
+
 .hero canvas {
 	position: absolute;
 	inset: 0;
@@ -110,14 +118,3 @@
 	font-size: var(--step--1);
 }
 
-/* Front page: header floats over the dark hero */
-.home .site-header {
-	position: absolute;
-	z-index: 10;
-	inset-inline: 0;
-	top: 0;
-}
-
-.home .site-header a {
-	color: var(--cream);
-}
