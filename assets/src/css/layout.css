@@ -11,34 +11,6 @@
 	margin-block-start: var(--flow-space, var(--space-m));
 }
 
-/* Responsive card grid: no media queries needed */
-.grid-auto {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
-	gap: var(--grid-gap, var(--space-m));
-}
-
-/* Horizontal grouping that wraps gracefully (tags, nav items, buttons) */
-.cluster {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--cluster-gap, var(--space-s));
-	align-items: center;
-}
-
 .section {
 	padding-block: var(--space-2xl);
-}
-
-.section--dark {
-	background: var(--color-surface-dark);
-	color: var(--color-on-dark);
-}
-
-.section--dark :is(h1, h2, h3, h4) {
-	color: var(--color-on-dark);
-}
-
-.section--dark a {
-	color: var(--color-on-dark);
 }

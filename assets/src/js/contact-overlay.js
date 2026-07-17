@@ -22,7 +22,7 @@ class BlackHole {
 		this.count = options.count ?? 2500;
 		this.bg = options.bg ?? 'rgba(44, 27, 24, 1)';
 		this.trail = options.trail ?? 'rgba(44, 27, 24, 0.2)';
-        this.starColors = options.starColors ?? ['255, 248, 240', '192, 133, 82'];
+		this.starColors = options.starColors ?? ['255, 248, 240', '192, 133, 82'];
 		this.stars = [];
 		this.collapse = false;
 		this.expanse = false;

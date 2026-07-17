@@ -38,7 +38,7 @@ export function initDroppy(root) {
 
 	root.insertAdjacentHTML(
 		'beforeend',
-		`<svg class="droppy__filter" aria-hidden="true"><filter id="${filterId}" x="-50%" width="200%" y="-50%" height="200%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/></filter></svg>`
+		`<svg class="droppy__filter" aria-hidden="true"><filter id="${filterId}" x="-50%" width="200%" y="-50%" height="200%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/></filter></svg>`,
 	);
 
 	// The ink layer: a non-heading clone of the letters, goo-filtered.
@@ -67,6 +67,6 @@ export function initDroppy(root) {
 				observer.disconnect();
 			}
 		},
-		{ threshold: 0.4 }
+		{ threshold: 0.4 },
 	).observe(root);
 }

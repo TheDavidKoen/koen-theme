@@ -44,13 +44,13 @@ export function initProjects(items) {
 						gsap.fromTo(
 							elements,
 							{ opacity: 0 },
-							{ opacity: 1, duration: DURATION / 2, delay: DURATION / 2 }
+							{ opacity: 1, duration: DURATION / 2, delay: DURATION / 2 },
 						),
 					onLeave: (elements) =>
 						gsap.fromTo(
 							elements,
 							{ opacity: (index, el) => state.getProperty(el, 'opacity') },
-							{ opacity: 0, duration: DURATION / 2 }
+							{ opacity: 0, duration: DURATION / 2 },
 						),
 				});
 			}

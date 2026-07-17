@@ -252,8 +252,7 @@ export function initHeroGhost(container) {
 		if (positions[i + 1] < -0.2) {
 			const x = positions[i];
 			const z = positions[i + 2];
-			const noise =
-				Math.sin(x * 5) * 0.35 + Math.cos(z * 4) * 0.25 + Math.sin((x + z) * 3) * 0.15;
+			const noise = Math.sin(x * 5) * 0.35 + Math.cos(z * 4) * 0.25 + Math.sin((x + z) * 3) * 0.15;
 			positions[i + 1] = -2.0 + noise;
 		}
 	}
@@ -296,7 +295,7 @@ export function initHeroGhost(container) {
 	function makeEye(xPos) {
 		const inner = new THREE.Mesh(
 			new THREE.SphereGeometry(0.3, 12, 12),
-			new THREE.MeshBasicMaterial({ color: CONFIG.eyeGlowColor, transparent: true, opacity: 0 })
+			new THREE.MeshBasicMaterial({ color: CONFIG.eyeGlowColor, transparent: true, opacity: 0 }),
 		);
 		inner.position.set(xPos, 0.6, 2.0);
 		eyeGroup.add(inner);
@@ -308,7 +307,7 @@ export function initHeroGhost(container) {
 				transparent: true,
 				opacity: 0,
 				side: THREE.BackSide,
-			})
+			}),
 		);
 		outer.position.set(xPos, 0.6, 1.95);
 		eyeGroup.add(outer);
@@ -325,12 +324,12 @@ export function initHeroGhost(container) {
 	for (let i = 0; i < CONFIG.fireflyCount; i++) {
 		const firefly = new THREE.Mesh(
 			new THREE.SphereGeometry(0.02, 2, 2),
-			new THREE.MeshBasicMaterial({ color: CONFIG.fireflyColor, transparent: true, opacity: 0.9 })
+			new THREE.MeshBasicMaterial({ color: CONFIG.fireflyColor, transparent: true, opacity: 0.9 }),
 		);
 		firefly.position.set(
 			(Math.random() - 0.5) * 40,
 			(Math.random() - 0.5) * 30,
-			(Math.random() - 0.5) * 20
+			(Math.random() - 0.5) * 20,
 		);
 
 		const glow = new THREE.Mesh(
@@ -340,7 +339,7 @@ export function initHeroGhost(container) {
 				transparent: true,
 				opacity: 0.4,
 				side: THREE.BackSide,
-			})
+			}),
 		);
 		firefly.add(glow);
 
@@ -351,7 +350,7 @@ export function initHeroGhost(container) {
 			velocity: new THREE.Vector3(
 				(Math.random() - 0.5) * CONFIG.fireflySpeed,
 				(Math.random() - 0.5) * CONFIG.fireflySpeed,
-				(Math.random() - 0.5) * CONFIG.fireflySpeed
+				(Math.random() - 0.5) * CONFIG.fireflySpeed,
 			),
 			phase: Math.random() * Math.PI * 2,
 			pulseSpeed: 2 + Math.random() * 3,
@@ -417,7 +416,7 @@ export function initHeroGhost(container) {
 		particle.rotation.set(
 			Math.random() * Math.PI * 2,
 			Math.random() * Math.PI * 2,
-			Math.random() * Math.PI * 2
+			Math.random() * Math.PI * 2,
 		);
 
 		particle.userData.life = 1.0;
@@ -442,7 +441,7 @@ export function initHeroGhost(container) {
 		(entries) => {
 			heroVisible = entries[0].isIntersecting;
 		},
-		{ threshold: 0 }
+		{ threshold: 0 },
 	).observe(container);
 
 	// Resize
@@ -548,7 +547,7 @@ export function initHeroGhost(container) {
 		// Body tilt toward movement direction
 		const mouseDirection = new THREE.Vector2(
 			targetX - ghostGroup.position.x,
-			targetY - ghostGroup.position.y
+			targetY - ghostGroup.position.y,
 		).normalize();
 		const tiltStrength = 0.1 * CONFIG.wobbleAmount;
 		const tiltDecay = 0.95;
@@ -621,7 +620,7 @@ export function initHeroGhost(container) {
 		new MouseEvent('pointermove', {
 			clientX: window.innerWidth / 2,
 			clientY: window.innerHeight / 2,
-		})
+		}),
 	);
 
 	requestAnimationFrame(animate);
