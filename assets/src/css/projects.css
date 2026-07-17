@@ -9,6 +9,19 @@
 	gap: var(--space-l);
 }
 
+/* Stacked (mobile) order: intro, list, then the portal button. */
+.projects__layout > .projects__intro {
+	order: 1;
+}
+
+.projects__layout > .projects__list {
+	order: 2;
+}
+
+.projects__layout > .contact-portal {
+	order: 3;
+}
+
 .projects__list {
 	display: flex;
 	flex-direction: column;
@@ -19,15 +32,25 @@
 }
 
 @media (width >= 64em) {
+	/* Split view: intro and button share the left column, list on the right. */
 	.projects__layout--split {
 		grid-template-columns: 1fr 1fr;
+		grid-template-areas:
+			'intro list'
+			'portal list';
 		align-items: start;
 	}
 
-	/* The intro keeps you company while the list scrolls past. */
-	.projects__layout--split .projects__intro {
-		position: sticky;
-		top: var(--space-l);
+	.projects__layout--split > .projects__intro {
+		grid-area: intro;
+	}
+
+	.projects__layout--split > .contact-portal {
+		grid-area: portal;
+	}
+
+	.projects__layout--split > .projects__list {
+		grid-area: list;
 	}
 }
 
